@@ -1,0 +1,33 @@
+to create database table 
+
+
+CREATE TABLE alembic_version (
+    version_num VARCHAR(32) NOT NULL,
+    CONSTRAINT alembic_version_pkc PRIMARY KEY (version_num)
+);
+
+CREATE TABLE users (
+    id SERIAL NOT NULL,
+    email VARCHAR NOT NULL,
+    hashed_password VARCHAR NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE UNIQUE INDEX ix_users_email ON users (email);
+CREATE INDEX ix_users_id ON users (id);
+
+CREATE TABLE design_iterations (
+    id SERIAL NOT NULL,
+    prompt VARCHAR,
+    sketch_url VARCHAR,
+    generated_image_url VARCHAR,
+    narrative TEXT,
+    compliance_check TEXT,
+    status VARCHAR,
+    owner_id INTEGER,
+    PRIMARY KEY (id),
+    FOREIGN KEY(owner_id) REFERENCES users (id)
+);
+
+CREATE INDEX ix_design_iterations_id ON design_iterations (id);
+CREATE INDEX ix_design_iterations_prompt ON design_iterations (prompt);

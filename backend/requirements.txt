@@ -1,0 +1,15 @@
+# backend/requirements.txt
+
+fastapi
+uvicorn[standard]
+sqlalchemy
+psycopg2-binary
+alembic
+python-dotenv
+google-generativeai>=0.5.0
+replicate
+Pillow
+python-multipart
+python-jose[cryptography]
+passlib
+bcrypt==3.2.0
